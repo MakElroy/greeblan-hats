@@ -329,7 +329,7 @@ function capArtwork(design) {
     if (!file || !/^[a-z0-9-]+\.webp$/.test(file)) return null;
     if (!capArtImages.has(file)) {
         const image=new Image();
-        const folder='./hat-art/';
+        const folder=file.startsWith('new-year-')?'./':'./hat-art/';
         image.src=folder+file;
         capArtImages.set(file,image);
     }
