@@ -48,6 +48,13 @@
  .bundle-list { margin-top: 10px }
  .bundle-list button { display: block; width: 100%; text-align: left }
  .bundle-list small { display: block }
+ .pair-packs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; border: 1px solid var(--edge, #44372d); border-radius: 10px; padding: 10px; margin: 10px 0 0 }
+ .pair-packs label, .pair-packs select { min-width: 0; margin: 0 }
+ .pair-packs select { width: 100% }
+ .pair-packs button, .pair-packs output, .pair-packs textarea { grid-column: 1 / -1 }
+ .pair-packs button { text-align: left }
+ .pair-packs output:empty { display: none }
+ @media (max-width: 500px) { .pair-packs { grid-template-columns: minmax(0, 1fr) } }
   code { color: #f9db56; white-space: nowrap }
   dialog { width: min(380px, calc(100% - 24px)); max-height: calc(100dvh - 24px); color: inherit;
     background: #202a22; border: 1px solid #778876; border-radius: 14px; padding: 16px; }
@@ -82,15 +89,20 @@
 <article><h3>Шляпки</h3><dl><div class="guide-row"><dt>Открыть каталог</dt><dd><code>шляпки</code></dd></div><div class="guide-row"><dt>Только мои</dt><dd><code>мои шляпки</code></dd></div><div class="guide-row"><dt>Листать</dt><dd><code>дальше / назад</code></dd></div><div class="guide-row"><dt>Выбранная шляпка</dt><dd><code>надеть / купить</code></dd></div><div class="guide-row"><dt>Закрыть режим</dt><dd><code>выход</code></dd></div><div class="guide-row"><dt>Надеть</dt><dd><code>шляпка НАЗВАНИЕ</code></dd></div><div class="guide-row"><dt>Купить</dt><dd><code>купить НАЗВАНИЕ</code></dd></div><div class="guide-row"><dt>В подарок</dt><dd><code>забрать НАЗВАНИЕ</code></dd></div><div class="guide-row"><dt>Код для увеличения</dt><dd><code>операция</code></dd></div></dl><p class="guide-note">Увеличение на 20 минут стоит 50 ₽, на час 100 ₽. Вставь код в сообщение к донату в DonationAlerts.</p></article>
 <article><h3>Категории в чате</h3><dl><div class="guide-row"><dt>Базовые</dt><dd><code>шляпки базовые</code></dd></div><div class="guide-row"><dt>Мемные коты</dt><dd><code>шляпки мемные коты</code></dd></div><div class="guide-row"><dt>Пивной пак</dt><dd><code>шляпки пивной пак</code></dd></div><div class="guide-row"><dt>Новогодний пак</dt><dd><code>шляпки новогодний пак</code></dd></div><div class="guide-row"><dt>Драгоценные</dt><dd><code>шляпки сокровищница</code></dd></div><div class="guide-row"><dt>Видеосалон 1</dt><dd><code>шляпки видеосалон 1</code></dd></div><div class="guide-row"><dt>Видеосалон 2</dt><dd><code>шляпки видеосалон 2</code></dd></div><div class="guide-row"><dt>Подписчики</dt><dd><code>шляпки подписчики</code></dd></div><div class="guide-row"><dt>VIP</dt><dd><code>шляпки вип</code></dd></div><div class="guide-row"><dt>Модераторы</dt><dd><code>шляпки модераторы</code></dd></div></dl></article>
 </div><p class="guide-trigger"><code>команды грибов</code> открывает памятку вместе с категориями в режиме «По запросу».</p></details>
-<details><summary>Наборы шляпок</summary><ul class="bundle-list">
-<li><button type="button" data-command="купить видеосалон"><strong>Видеосалон, оба тома</strong><small>24 шт. · 2 100 ₽</small></button></li>
-<li><button type="button" data-command="купить сокровищница"><strong>Сокровищница</strong><small>10 шт. · 800 ₽</small></button></li>
+<details id="packs"><summary>Наборы шляпок</summary>
+<fieldset id="pair-packs" class="pair-packs"><legend>Два пака · 2 000 ₽</legend>
+<label>Первый пак <select id="first-pack"><option selected>Видеосалон 1</option><option>Видеосалон 2</option><option>Мемные коты</option><option>Пивной пак</option><option>Новогодний пак</option></select></label>
+<label>Второй пак <select id="second-pack"><option>Видеосалон 1</option><option selected>Видеосалон 2</option><option>Мемные коты</option><option>Пивной пак</option><option>Новогодний пак</option></select></label>
+<button type="button" data-command="">Скопировать команду покупки</button><output aria-live="polite"></output><textarea hidden readonly aria-label="Команда покупки двух паков"></textarea></fieldset>
+<ul class="bundle-list">
+<li><button type="button" data-command="купить видеосалон"><strong>Видеосалон, оба тома</strong><small>24 шт. · 2 000 ₽</small></button></li>
+<li><button type="button" data-command="купить сокровищница"><strong>Сокровищница</strong><small>10 шт. · 3 500 ₽</small></button></li>
 <li><button type="button" data-command="купить мемные коты"><strong>Мемные коты</strong><small>14 шт. · 1 200 ₽</small></button></li>
 <li><button type="button" data-command="купить пивной пак"><strong>Пивной пак</strong><small>12 шт. · 1 200 ₽</small></button></li>
 <li><button type="button" data-command="купить новогодний пак"><strong>Новогодний пак</strong><small>12 шт. · 1 200 ₽</small></button></li>
 <li><button type="button" data-command="купить видеосалон 1"><strong>Видеосалон 1</strong><small>12 шт. · 1 200 ₽</small></button></li>
 <li><button type="button" data-command="купить видеосалон 2"><strong>Видеосалон 2</strong><small>12 шт. · 1 200 ₽</small></button></li>
-<li><button type="button" data-command="купить все шляпки"><strong>Все платные шляпки</strong><small>72 шт. · 3 000 ₽</small></button></li>
+<li><button type="button" data-command="купить все шляпки"><strong>Все платные шляпки</strong><small>72 шт. · 5 000 ₽</small></button></li>
 </ul><output aria-live="polite"></output>
 <textarea hidden readonly aria-label="Команда покупки для чата Twitch"></textarea></details>
 <label>Коллекция <select aria-label="Коллекция">
@@ -797,9 +809,21 @@ jewelMotionPreference.addEventListener('change',()=>{
 });
 
 const extraHats={};
-const checkoutPrices={"Человек-паук": 150, "Фредди Крюгер": 150, "Дарт Вейдер": 150, "Микки Маус": 150, "Шаринган": 150, "Пикачу": 150, "Марио": 150, "Джейсон": 150, "Шрек": 150, "Бэтмен": 150, "Соник": 150, "Сейлор Мун": 150, "Безликий": 150, "Терминатор": 150, "Губка Боб": 150, "Чебурашка": 150, "Рафаэль": 150, "ВАЛЛ-И": 150, "Миньон": 150, "Гарри Поттер": 150, "Гоустфейс": 150, "Линк": 150, "Картман": 150, "Оптимус Прайм": 150, "Золотая": 500, "Рубиновая": 500, "Бриллиантовая": 500, "Изумрудная": 500, "Сапфировая": 500, "Розовый бриллиант": 500, "Платиновая": 500, "Аметистовая": 500, "Аквамариновая": 500, "Чёрный бриллиант": 500, "Грампи Кэт": 150, "Попкэт": 150, "Нян-кот": 150, "Доге": 150, "Банановый кот": 150, "Кот-клавишник": 150, "Большой Флоппа": 150, "Бонго-кот": 150, "CatJAM": 150, "Кот «А?»": 150, "Happy Cat": 150, "Максвелл": 150, "Видеосалон": 2100, "Сокровищница": 800, "Мемные коты": 1200, "Видеосалон 1": 1200, "Видеосалон 2": 1200, "Все шляпки": 3000, "Кот из Котопса": 150, "Пёс из Котопса": 150, "Пенное": 150, "Тёмный стаут": 150, "Шпроты": 150, "Вобла": 150, "Кальмар": 150, "Гренки": 150, "Рак": 150, "Сыр-косичка": 150, "Крендель": 150, "Фисташки": 150, "Солёный огурец": 150, "Охотничьи колбаски": 150, "Пивной пак": 1200, "Колпак Деда Мороза": 100, "Ёлка": 100, "Мандарин": 100, "Подарок": 100, "Снежный шар": 100, "Пряник": 100, "Куранты": 100, "Варежка": 100, "Оливье": 100, "Снеговик": 100, "Космонавт": 100, "Ледяная корона": 100, "Новогодний пак": 1200};
+const checkoutPrices={"Человек-паук": 150, "Фредди Крюгер": 150, "Дарт Вейдер": 150, "Микки Маус": 150, "Шаринган": 150, "Пикачу": 150, "Марио": 150, "Джейсон": 150, "Шрек": 150, "Бэтмен": 150, "Соник": 150, "Сейлор Мун": 150, "Безликий": 150, "Терминатор": 150, "Губка Боб": 150, "Чебурашка": 150, "Рафаэль": 150, "ВАЛЛ-И": 150, "Миньон": 150, "Гарри Поттер": 150, "Гоустфейс": 150, "Линк": 150, "Картман": 150, "Оптимус Прайм": 150, "Золотая": 500, "Рубиновая": 500, "Бриллиантовая": 500, "Изумрудная": 500, "Сапфировая": 500, "Розовый бриллиант": 500, "Платиновая": 500, "Аметистовая": 500, "Аквамариновая": 500, "Чёрный бриллиант": 500, "Грампи Кэт": 150, "Попкэт": 150, "Нян-кот": 150, "Доге": 150, "Банановый кот": 150, "Кот-клавишник": 150, "Большой Флоппа": 150, "Бонго-кот": 150, "CatJAM": 150, "Кот «А?»": 150, "Happy Cat": 150, "Максвелл": 150, "Видеосалон": 2000, "Сокровищница": 3500, "Мемные коты": 1200, "Видеосалон 1": 1200, "Видеосалон 2": 1200, "Все шляпки": 5000, "Кот из Котопса": 150, "Пёс из Котопса": 150, "Пенное": 150, "Тёмный стаут": 150, "Шпроты": 150, "Вобла": 150, "Кальмар": 150, "Гренки": 150, "Рак": 150, "Сыр-косичка": 150, "Крендель": 150, "Фисташки": 150, "Солёный огурец": 150, "Охотничьи колбаски": 150, "Пивной пак": 1200, "Колпак Деда Мороза": 100, "Ёлка": 100, "Мандарин": 100, "Подарок": 100, "Снежный шар": 100, "Пряник": 100, "Куранты": 100, "Варежка": 100, "Оливье": 100, "Снеговик": 100, "Космонавт": 100, "Ледяная корона": 100, "Новогодний пак": 1200, "Видеосалон 1 + Видеосалон 2": 2000, "Видеосалон 1 + Мемные коты": 2000, "Видеосалон 1 + Пивной пак": 2000, "Видеосалон 1 + Новогодний пак": 2000, "Видеосалон 2 + Мемные коты": 2000, "Видеосалон 2 + Пивной пак": 2000, "Видеосалон 2 + Новогодний пак": 2000, "Мемные коты + Пивной пак": 2000, "Мемные коты + Новогодний пак": 2000, "Пивной пак + Новогодний пак": 2000};
 
- const filter = document.querySelector('select');
+ const filter = document.querySelector('select[aria-label="Коллекция"]');
+ const pairPicker = document.querySelector('#pair-packs');
+ const firstPack = pairPicker.querySelector('#first-pack');
+ const secondPack = pairPicker.querySelector('#second-pack');
+ const pairOrder = pairPicker.querySelector('button');
+ function updatePackOrder() {
+   for (const option of secondPack.options) option.disabled = option.value === firstPack.value;
+   if (secondPack.value === firstPack.value) secondPack.value = [...secondPack.options].find(option => !option.disabled).value;
+   pairOrder.dataset.command = 'купить ' + firstPack.value + ' + ' + secondPack.value;
+ }
+ pairPicker.addEventListener('change', updatePackOrder);
+ updatePackOrder();
+
  const guide = document.querySelector('#commands');
  const preview = document.querySelector('#hat-preview');
  const mushroom = preview.querySelector('.preview-mushroom');
@@ -935,6 +959,7 @@ const checkoutPrices={"Человек-паук": 150, "Фредди Крюгер
  if(collection==='new-year')filter.value='Новогодний пак';
  show();
  if (location.hash === '#commands') guide.open = true;
+ if (location.hash === '#packs') document.querySelector('#packs').open = true;
  document.querySelector('#previous').onclick = () => render(current - 1);
  document.querySelector('#next').onclick = () => render(current + 1);
  preview.addEventListener('keydown', event => {
@@ -954,7 +979,7 @@ const checkoutPrices={"Человек-паук": 150, "Фредди Крюгер
    const button = event.target.closest('button[data-command]');
    if (!button) return;
    const command = button.dataset.command;
-   const area = button.closest('dialog, details');
+   const area = button.closest('fieldset, dialog, details');
    const status = area.querySelector('output');
    const manual = area.querySelector('textarea');
    manual.hidden = true;
